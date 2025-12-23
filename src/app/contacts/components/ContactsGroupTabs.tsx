@@ -51,30 +51,37 @@ export function ContactsGroupTabs({ groups, activeTab, onTabChange, onAddGroup }
                         >
                             <Button variant="outline" className="[&>svg>path]:!stroke-[2px] hover:bg-zinc-200 border-none  rounded-full shadow-sm"><Add size="20" color="#000000ff" /></Button>
                         </DialogTrigger>
-                        <DialogContent className="sm:max-w-[455px]">
+                        <DialogContent showCloseButton={false} className="sm:max-w-[450px] pb-8">
                             <form onSubmit={handleAddGroup}>
                                 <DialogHeader>
-                                    <DialogTitle>Yeni Grup Ekle</DialogTitle>
+
+                                    <div className="flex items-center justify-center rounded-lg gap-3  h-35 bg-[linear-gradient(90deg,#A8D37F_0%,#3B3B3B_100%)]">
+                                        <div className="rounded-full flex items-center justify-center">
+                                            <Add size="32" className="text-white" variant="Bold" />
+                                        </div>
+                                        <DialogTitle className="text-2xl text-white font-semibold">Yeni Grup Ekle</DialogTitle>
+
+                                    </div>
                                 </DialogHeader>
-                                <div className="flex flex-col p-2 gap-8 ">
-                                    <div className="grid gap-3">
-                                        <Label htmlFor="group-name">Grup Adı</Label>
+                                <div className="flex flex-col pb-5 pt-8 gap-6">
+                                    <div className="grid gap-2">
+
                                         <Input
-                                            className="rounded-full shadow-md"
+                                            className="rounded-lg text-center border-zinc-200 h-11"
                                             id="group-name"
                                             name="group-name"
                                             value={newGroupName}
                                             onChange={(e) => setNewGroupName(e.target.value)}
-                                            placeholder="...example"
+                                            placeholder="Örn: İş Arkadaşları"
                                             required
                                         />
                                     </div>
                                 </div>
-                                <DialogFooter>
+                                <DialogFooter className="pt-5 border-t gap-4 flex items-center justify-center  border-zinc-200 ">
                                     <DialogClose asChild>
-                                        <Button variant="outline" type="button">Yoksay</Button>
+                                        <Button variant="outline" type="button" className="rounded-lg text-muted-foreground hover:text-foreground">Vazgeç</Button>
                                     </DialogClose>
-                                    <Button type="submit">Ekle</Button>
+                                    <Button type="submit" className="rounded-lg px-6">Oluştur</Button>
                                 </DialogFooter>
                             </form>
                         </DialogContent>

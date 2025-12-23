@@ -20,7 +20,13 @@ import { Add, Edit2, Gallery, MessageFavorite } from "iconsax-reactjs"
 import { Contact } from "@/app/data/contacts"
 import { useState, useRef } from "react"
 import { supabase } from "@/lib/supabase"
-import { NativeSelect, NativeSelectOption } from "@/components/ui/native-select"
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select"
 
 
 export function EditContactDialog({
@@ -177,24 +183,21 @@ export function EditContactDialog({
 
                         <div className="flex py-4 gap-2 items-center ">
 
-                            <div className="relative border flex items-center justify-center border-zinc-200 rounded-full px-3 py-1 cursor-default bg-zinc-50">
-                                <span className="text-xs font-medium">{formData.status}</span>
-                            </div>
-
-                            <div className="relative cursor-pointer hover:opacity-70 transition-opacity">
-                                <Add size="16" color="#2b2b2bff" />
-                                <select
-                                    value={formData.status}
-                                    onChange={(e) => setFormData({ ...formData, status: e.target.value })}
-                                    className="absolute inset-0 w-full h-full opacity-0 cursor-pointer appearance-none"
-                                >
+                            <Select
+                                value={formData.status}
+                                onValueChange={(value) => setFormData({ ...formData, status: value })}
+                            >
+                                <SelectTrigger className="w-auto min-w-[120px] gap-2 rounded-full text-xs font-medium h-8 bg-zinc-50 border-zinc-200 shadow-sm focus:ring-0">
+                                    <SelectValue>{formData.status}</SelectValue>
+                                </SelectTrigger>
+                                <SelectContent>
                                     {groups.filter(g => g.id !== "all").map(group => (
-                                        <option key={group.id} value={group.label}>
+                                        <SelectItem key={group.id} value={group.label}>
                                             {group.label}
-                                        </option>
+                                        </SelectItem>
                                     ))}
-                                </select>
-                            </div>
+                                </SelectContent>
+                            </Select>
                         </div>
                     </div>
 
